@@ -12,13 +12,13 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
 
-class MyApplication : Application(), ImageLoaderFactory {
+class App : Application(), ImageLoaderFactory {
     init {
         instance = this
     }
 
     companion object {
-        private var instance: MyApplication? = null
+        private var instance: App? = null
         fun applicationContext(): Context {
             return instance!!.applicationContext
         }
@@ -28,7 +28,7 @@ class MyApplication : Application(), ImageLoaderFactory {
         super.onCreate()
         startKoin {
             androidLogger()
-            androidContext(this@MyApplication)
+            androidContext(this@App)
             modules(appModule)
         }
     }
