@@ -8,9 +8,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.eduardo.tecsa.App
 import com.example.eduardo.tecsa.domain.model.TMDBMovie
 
+interface IMovieDatabase {
+    fun movieDao(): MovieDAO
+}
+
 @Database(entities = [TMDBMovie::class], version = 1)
-abstract class MovieDatabase : RoomDatabase() {
-    abstract fun movieDao(): MovieDAO
+abstract class MovieDatabase : RoomDatabase(), IMovieDatabase {
+    abstract override fun movieDao(): MovieDAO
 
     companion object {
         @Volatile

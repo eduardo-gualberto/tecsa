@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.eduardo.tecsa.domain.model.TMDBMovie
+import com.example.eduardo.tecsa.ui.component.Empty
 import com.example.eduardo.tecsa.ui.component.MovieCard
 import org.koin.androidx.compose.koinViewModel
 
@@ -33,6 +34,9 @@ fun MovieListScreen(
             lastVisibleItem != null && lastVisibleItem.index != 0 && lastVisibleItem.index >= listState.layoutInfo.totalItemsCount - 5
         }
     }
+    val itemsCount: Int by remember {
+        derivedStateOf { listState.layoutInfo.totalItemsCount }
+    }
 
     LaunchedEffect(reachedBottom, mainUiState.endReached) {
         if (reachedBottom && !mainUiState.endReached) viewModel.fetchMovieList()
@@ -44,9 +48,15 @@ fun MovieListScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         state = listState
     ) {
+        if (itemsCount <= 1) {
+            item {
+                Empty(modifier = Modifier.fillMaxSize())
+            }
+        }
         items(items = mainUiState.movieList, key = { movie: TMDBMovie -> movie.id }) {
             MovieCard(movie = it)
             Spacer(Modifier.height(8.dp))
         }
     }
+
 }

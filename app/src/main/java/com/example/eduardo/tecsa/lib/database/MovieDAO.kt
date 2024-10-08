@@ -9,9 +9,6 @@ import com.example.eduardo.tecsa.domain.model.TMDBMovie
 @Dao
 interface MovieDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(movie: TMDBMovie)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMany(movieList: List<TMDBMovie>)
 
     @Query("select * from tmdb_movie")

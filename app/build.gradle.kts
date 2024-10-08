@@ -74,7 +74,13 @@ dependencies {
 
     implementation(libs.coil.compose)
 
+
+    implementation(project.dependencies.platform("io.insert-koin:koin-bom:4.0.0"))
+    implementation(libs.koin.core)
     implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.test)
+    implementation(libs.koin.test.junit4)
 
 
     val room_version = "2.6.1"

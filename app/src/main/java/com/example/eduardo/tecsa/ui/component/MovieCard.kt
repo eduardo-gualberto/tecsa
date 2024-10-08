@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.eduardo.tecsa.R
 import com.example.eduardo.tecsa.domain.model.TMDBMovie
-import com.example.eduardo.tecsa.lib.api.APIs
+import com.example.eduardo.tecsa.lib.api.TMDBApi
 
 @Composable
 fun MovieCard(
@@ -31,7 +31,7 @@ fun MovieCard(
             verticalAlignment = Alignment.Top
         ) {
             MoviePoster(
-                imageURL = APIs.IMAGE_BASE_URL + movie.posterPath,
+                imageURL = TMDBApi.IMAGE_BASE_URL + movie.posterPath,
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column(
